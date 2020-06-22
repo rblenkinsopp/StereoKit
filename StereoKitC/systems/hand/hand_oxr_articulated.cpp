@@ -33,7 +33,7 @@ void hand_oxra_init() {
 		info.handJointSet = XR_HAND_JOINT_SET_DEFAULT_EXT;
 		XrResult result = xr_extensions.xrCreateHandTrackerEXT(xr_session, &info, &oxra_hand_tracker[h]);
 		if (XR_FAILED(result)) {
-			log_warnf("xrCreateHandTrackerMSFT failed: [%s]", openxr_string(result));
+			log_warnf("xrCreateHandTrackerEXT failed: [%s]", openxr_string(result));
 			return;
 		}
 	}
@@ -57,7 +57,6 @@ void hand_oxra_update_joints() {
 		XrHandJointsLocateInfoEXT locate_info = { XR_TYPE_HAND_JOINTS_LOCATE_INFO_EXT };
 		locate_info.time      = xr_time;
 		locate_info.baseSpace = xr_app_space;
-
 		XrHandJointLocationEXT joint_locations[XR_HAND_JOINT_COUNT_EXT];
 		XrHandJointLocationsEXT locations = { XR_TYPE_HAND_JOINT_LOCATIONS_EXT };
 		locations.isActive = XR_FALSE;
